@@ -1,0 +1,340 @@
+/* =========================================
+   1. GLOBAL VARIABLES (THEME CONFIGURATION)
+   ========================================= */
+:root {
+  /* Medical Color Palette */
+  /* Teal represents cleanliness and calm (Clinical standard) */
+  --primary: #0d9488;
+
+  /* Backgrounds */
+  --bg: #f3f4f6; /* Light gray for reduced eye strain */
+  --white: #ffffff; /* Card backgrounds */
+  --text: #1f2937; /* Dark gray for readability (softer than pure black) */
+
+  /* Triage Status Colors */
+  --danger: #ef4444; /* Red for Critical/Emergency */
+  --success: #10b981; /* Green for Stable/Discharged */
+}
+
+/* =========================================
+   2. RESET & BASE STYLES
+   ========================================= */
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased; /* Makes text sharper on Mac */
+}
+
+a {
+  text-decoration: none; /* Removes underline from links */
+  color: inherit; /* Inherits color from parent instead of default blue */
+}
+
+/* =========================================
+   3. LAYOUT UTILITIES
+   ========================================= */
+/* Centered container with max-width to prevent stretching on huge screens */
+.container {
+  max-width: 1000px;
+  margin: 2rem auto; /* Top/Bottom margin 2rem, Left/Right auto (centers it) */
+  padding: 0 1rem; /* Padding for mobile screens */
+}
+
+/* Standard White Card Style used throughout the app */
+.card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 8px; /* Soft rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle depth */
+}
+
+/* =========================================
+   4. NAVIGATION BAR
+   ========================================= */
+.navbar {
+  background: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  /* Flexbox is used to push Logo to left and Links to right */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 1rem;
+  color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: white; /* Bright white on hover */
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+/* =========================================
+   5. FORMS & AUTHENTICATION
+   ========================================= */
+/* Centers the Login/Signup box vertically and horizontally */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh; /* Takes up 80% of viewport height */
+}
+
+.form-group {
+  margin-bottom: 1rem; /* Spacing between inputs */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Unified styling for all input types */
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  box-sizing: border-box; /* Ensures padding doesn't increase width */
+}
+
+.error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  filter: brightness(110%); /* Lighten button on hover */
+}
+
+.switch-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.switch-link a {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* =========================================
+   6. DASHBOARD STATISTICS
+   ========================================= */
+.stats-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap; /* Allows wrapping on small mobile screens */
+}
+
+.stat-card {
+  flex: 1; /* Each card takes equal width */
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stat-num {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Visual indicators for specific stats */
+.stat-card.danger {
+  border-top: 4px solid var(--danger); /* Red top border */
+}
+
+.stat-card.success {
+  border-top: 4px solid var(--success); /* Green top border */
+}
+
+/* =========================================
+   7. RESPONSIVE GRID (CORE FEATURE)
+   ========================================= */
+/* 
+   This grid uses 'auto-fill' and 'minmax'.
+   It automatically figures out how many 280px cards fit on the screen.
+   - On Desktop: 3 or 4 columns
+   - On Tablet: 2 columns
+   - On Mobile: 1 column
+   No media queries required!
+*/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* =========================================
+   8. PATIENT CARDS (TRIAGE UI)
+   ========================================= */
+.patient-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s;
+}
+
+.patient-card:hover {
+  transform: translateY(-3px); /* Lift effect */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Color-coded left borders for quick visual scanning */
+.patient-card.critical {
+  border-left: 5px solid var(--danger);
+}
+.patient-card.stable {
+  border-left: 5px solid var(--success);
+}
+
+.card-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; /* Circle shape */
+  object-fit: cover; /* Prevents image distortion */
+}
+
+.badge {
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  color: white;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.badge-red {
+  background: var(--danger);
+}
+.badge-green {
+  background: var(--success);
+}
+
+.btn-outline {
+  display: block;
+  text-align: center;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* =========================================
+   9. DETAILS PAGE
+   ========================================= */
+.details-header {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.avatar-large {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.vitals-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 Equal columns */
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.vital-box {
+  background: #f9fafb;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.vital-box span {
+  display: block;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.vital-box strong {
+  font-size: 1.2rem;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+}
+
+.btn-danger:hover {
+  background: #dc2626; /* Darker red */
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.header-row .btn-primary {
+  width: auto; /* Allow button to shrink to text size */
+  margin-top: 0;
+}
