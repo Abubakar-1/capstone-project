@@ -1,133 +1,124 @@
-# 🏥 MediQueue Pro - Patient & Clinic Management System
+# 🏥 MediQueue Pro – Patient & Clinic Management System
 
-> **A React-based Capstone Project**  
-> _Streamlining patient triage, admission workflows, and clinic facility management._
+A React-based capstone project focused on digitizing patient intake, triage, and facility workflow coordination.
 
-## 📖 Project Overview
+## 📖 Overview
 
-**MediQueue Pro** is a comprehensive Single Page Application (SPA) designed for the healthcare sector. It solves the problem of disorganized waiting rooms by providing clinic staff with a digital dashboard to manage patient intake, assess triage priority, and track facility capacity in real-time.
-
-Unlike simple CRUD apps, MediQueue Pro features **authentication simulation**, **complex form validation**, **persistent data storage**, and **smart searching/filtering**, simulating a real-world SaaS product used in medical facilities.
+MediQueue Pro is a Single Page Application designed for clinics that need a structured way to manage waiting rooms, triage levels, and basic patient records. It demonstrates the logic and architecture behind a lightweight medical dashboard: authentication simulation, validated intake forms, persistent local storage, and dynamic searching/filtering.
 
 ---
 
-## ✨ Key Features
+## ✨ Core Features
 
-### 🔐 Authentication & Security
+### 🔐 Authentication
 
-- **Staff Login/Signup:** Secure access control using `useContext`.
-- **Protected Routes:** Unauthorized users are redirected away from sensitive patient data.
-- **Session Persistence:** Users remain logged in across page reloads via LocalStorage.
+- Login/signup flow using Context API.
+- Protected routes to prevent access without a session.
+- LocalStorage persistence so sessions survive page reloads.
 
-### 📋 Patient Management (CRUD)
+### 📋 Patient Workflow
 
-- **Digital Admissions:** Replace paper forms with a validated digital intake process.
-- **Triage System:** Assign priority levels (**Stable** vs **Critical**) with visual color coding.
-- **Detailed Profiles:** Dynamic routing (`/patient/:id`) to view individual medical notes and vitals.
-- **Discharge Protocols:** Securely remove patients from the system with confirmation safeguards.
+- Add, update, and discharge patients.
+- Triage tagging with **Critical** or **Stable** status.
+- Individual patient profiles with vitals and notes.
+- Deletion safeguards to avoid accidental data loss.
 
-### 📊 Dashboard & Analytics
+### 📊 Dashboard
 
-- **Live Statistics:** Heads-up display showing Total Patients, Critical Cases, and Stable Cases.
-- **Smart Search:** Instantly filter patients by name.
-- **Status Filtering:** Sort the waiting list to see only "Critical" or "Stable" patients.
+- Real-time counts of total, critical, and stable patients.
+- Quick search by name.
+- Status filtering for faster triage decisions.
 
-### ⚙️ Technical Highlights
+### ⚙️ Technical Capabilities
 
-- **External API Integration:** Fetches simulated patient data from `randomuser.me` for initial setup.
-- **Robust Validation:** Uses `React Hook Form` + `Yup` to ensure data integrity (no empty fields, valid emails).
-- **Responsive Design:** Custom CSS Grid architecture that works on Mobile, Tablet, and Desktop.
+- Initial mock data from the RandomUser API.
+- Form logic built with React Hook Form + Yup.
+- Responsive layout using CSS variables and grid.
 
 ---
 
-## 🛠️ Technology Stack
+## 🛠️ Tech Stack
 
-| Category          | Technology            | Usage                                     |
-| :---------------- | :-------------------- | :---------------------------------------- |
-| **Framework**     | React (Vite)          | Core application structure                |
-| **State Mgmt**    | Context API           | Global state for Auth & Patient Data      |
-| **Routing**       | React Router DOM      | Client-side navigation & Protected Routes |
-| **Forms**         | React Hook Form       | Efficient form handling                   |
-| **Validation**    | Yup                   | Schema-based data validation              |
-| **Styling**       | CSS3 (Variables/Grid) | Responsive medical theming                |
-| **Notifications** | React Hot Toast       | User feedback popups                      |
-| **Data Source**   | RandomUser API        | Mock data generation                      |
+| Category      | Tool             | Purpose                       |
+| ------------- | ---------------- | ----------------------------- |
+| Framework     | React (Vite)     | SPA environment               |
+| State Mgmt    | Context API      | Auth + Patient global state   |
+| Routing       | React Router DOM | Navigation + protected routes |
+| Forms         | React Hook Form  | Efficient form handling       |
+| Validation    | Yup              | Schema-based validation       |
+| Styling       | CSS3             | Layout + theming              |
+| Notifications | React Hot Toast  | Lightweight feedback          |
+| Data Source   | RandomUser API   | Mock patient data             |
 
 ---
 
 ## 🚀 Getting Started
 
-Follow these steps to run the project locally on your machine.
-
 ### Prerequisites
 
-Make sure you have **Node.js** installed.
+- Node.js installed.
 
-### Installation
+### Steps
 
-1. **Clone the repository**
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/your-username/mediqueue-pro.git
    cd mediqueue-pro
    ```
 
-2. **Install Dependencies**
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-3. **Start the Development Server**
+3. Start the dev server:
 
    ```bash
    npm run dev
    ```
 
-4. **Access the App**
-   Open your browser and navigate to `http://localhost:5173`.
+4. Access the app at:
+   `http://localhost:5173`
 
 ---
 
-## 📂 Project Architecture
+## 📂 Project Structure
 
-The codebase follows a modular, enterprise-level structure for scalability.
-
-```text
+```
 src/
-├── components/          # Reusable UI blocks
-│   ├── Navbar.jsx       # Responsive navigation
-│   ├── ProtectedRoute.jsx # Security wrapper
+├── components/
+│   ├── Navbar.jsx
+│   ├── ProtectedRoute.jsx
 │   └── ...
-├── context/             # Global State Logic
-│   ├── AuthContext.jsx  # Handles Login/Session
-│   └── PatientContext.jsx # Handles Data/API/Storage
-├── pages/               # Main Views
-│   ├── Dashboard.jsx    # Stats & Patient Grid
-│   ├── AddPatient.jsx   # Intake Form
-│   ├── PatientDetails.jsx # Individual Record
-│   └── Login/Signup.jsx # Auth Pages
-└── main.jsx             # Entry Point
+├── context/
+│   ├── AuthContext.jsx
+│   └── PatientContext.jsx
+├── pages/
+│   ├── Dashboard.jsx
+│   ├── AddPatient.jsx
+│   ├── PatientDetails.jsx
+│   └── Login/Signup.jsx
+└── main.jsx
 ```
 
 ---
 
-## 📸 Usage Guide
+## 📸 How to Use
 
-1. **First Run:** Upon first load, the app fetches mock data from the API so the dashboard isn't empty.
-2. **Login:** Use any email/password (or create an account) to enter.
-3. **Admit:** Click "Admit New Patient". Try leaving fields empty to see the **Yup Validation** in action.
-4. **Triage:** Select "Critical" priority to see the card border turn **Red**.
-5. **Filter:** Use the dropdown on the Dashboard to show only Critical patients.
-6. **Refresh:** Reload the page. Notice that your data is **saved** (LocalStorage).
-
----
-
-## 👨‍💻 Author
-
-**Usman Abubakar Abdulkadir**  
-_Capstone Project Submission_
+1. On first load, the app fetches mock records so the dashboard isn’t empty.
+2. Create an account or log in with any credentials.
+3. Add a patient and try submitting incomplete fields to see validation.
+4. Mark a patient as Critical and note the UI change.
+5. Filter the dashboard by status or search by name.
+6. Reload the page to confirm LocalStorage persistence.
 
 ---
 
-_This project was built to demonstrate proficiency in React, State Management, and Frontend Architecture._
+## 👤 Author
+
+**Usman Abubakar Abdulkadir**
+Capstone Project
+
+---
