@@ -2,13 +2,13 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import AddPatient from "./pages/AddPatient";
 import PatientDetails from "./pages/PatientDetails";
 import { AuthProvider } from "./context/AuthContext";
 import { PatientProvider } from "./context/PatientContext";
 import { Toaster } from "react-hot-toast";
-import Signup from "./pages/SignUp";
 
 /**
  * App Component
